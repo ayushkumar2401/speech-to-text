@@ -58,6 +58,21 @@ function App() {
     stopHandle();
     resetTranscript();
   };
+
+  function downloadAsFile(){
+
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(transcript));
+    element.setAttribute('download', 'speech-to-file.txt');
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+
+  }
   return (
     <div className="microphone-wrapper">
       <div className="center mt-2  " >
@@ -102,6 +117,11 @@ function App() {
           <button className="microphone-reset btn" onClick={handleReset}>
             Reset
           </button>
+
+          <button className="microphone-reset btn mt-2" onClick={downloadAsFile}>
+            Download as file
+          </button>
+
         </div>
       )}
     </div>
